@@ -1,4 +1,4 @@
-# Proteomics Analysis (Female & Male)
+# Proteomics Analysis (Male & Female)
 
 This repository contains R code for the analysis presented in *My Paper (2025)*.
 
