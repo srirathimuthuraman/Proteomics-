@@ -142,30 +142,32 @@ ggplot(prot_diff_M_out, aes(x = diff, y = log_pval)) +
     max.overlaps = 100
   )
 
-# Step 1: Filter out "Negr1"
+##PCA PLOT
+
+# Filter out "Negr1"
 data_processed_M_out <- data_processed_M[rownames(data_processed_M) != "Negr1", ]
 
-# Step 2: Log2 transform the data (after adding 1 to avoid -Inf)
+# Log2 transform the data (after adding 1 to avoid -Inf)
 data_pca <- t(log2(data_processed_M_out + 1))
 
-# Step 3: Run PCA
+# Run PCA
 pca_res <- prcomp(data_pca, scale. = FALSE)
 
-# Step 4: Calculate percent variance explained
+# Calculate percent variance explained
 var_explained <- (pca_res$sdev^2 / sum(pca_res$sdev^2)) * 100
 pc1_label <- paste0("PC1 (", round(var_explained[1], 1), "%)")
 pc2_label <- paste0("PC2 (", round(var_explained[2], 1), "%)")
 
-# Step 5: Create PCA dataframe
+# Create PCA dataframe
 pca_df <- as.data.frame(pca_res$x)
 
 # Extract group info from row names (e.g., "FKO_1", "FWT_2", etc.)
 pca_df$Group <- factor(gsub("_.*", "", rownames(pca_df)))
 
-# Step 6: Set custom colors
+# Set custom colors
 group_colors <- c("MKO" = "darkgreen", "MWT" = "purple")
 
-# Step 7: Plot
+# Plot
 ggplot(pca_df, aes(x = PC1, y = PC2, color = Group)) +
   geom_point(size = 6, alpha = 0.8) +
   labs(
@@ -328,30 +330,30 @@ ggplot(prot_diff_F_out, aes(x = diff, y = log_pval)) +
     max.overlaps = 100
   )
 
-# Step 1: Filter out "Negr1"
+# Filter out "Negr1"
 data_processed_F_out <- data_processed_F[rownames(data_processed_F) != "Negr1", ]
 
-# Step 2: Log2 transform the data (after adding 1 to avoid -Inf)
+# Log2 transform the data (after adding 1 to avoid -Inf)
 data_pca <- t(log2(data_processed_F_out + 1))
 
-# Step 3: Run PCA
+# Run PCA
 pca_res <- prcomp(data_pca, scale. = FALSE)
 
-# Step 4: Calculate percent variance explained
+# Calculate percent variance explained
 var_explained <- (pca_res$sdev^2 / sum(pca_res$sdev^2)) * 100
 pc1_label <- paste0("PC1 (", round(var_explained[1], 1), "%)")
 pc2_label <- paste0("PC2 (", round(var_explained[2], 1), "%)")
 
-# Step 5: Create PCA dataframe
+# Create PCA dataframe
 pca_df <- as.data.frame(pca_res$x)
 
 # Extract group info from row names (e.g., "FKO_1", "FWT_2", etc.)
 pca_df$Group <- factor(gsub("_.*", "", rownames(pca_df)))
 
-# Step 6: Set custom colors
+# Set custom colors
 group_colors <- c("FKO" = "darkgreen", "FWT" = "purple")
 
-# Step 7: Plot
+# Plot
 ggplot(pca_df, aes(x = PC1, y = PC2, color = Group)) +
   geom_point(size = 6, alpha = 0.8) +
   labs(
