@@ -1,4 +1,3 @@
-
 #### Male Proteomics Analysis ####
 library(openxlsx)
 library(proDA)
@@ -142,7 +141,7 @@ ggplot(prot_diff_M_out, aes(x = diff, y = log_pval)) +
     max.overlaps = 100
   )
 
-##PCA PLOT
+##PCA PLOT Male
 
 # Filter out "Negr1"
 data_processed_M_out <- data_processed_M[rownames(data_processed_M) != "Negr1", ]
@@ -329,6 +328,8 @@ ggplot(prot_diff_F_out, aes(x = diff, y = log_pval)) +
     box.padding = 0.4,
     max.overlaps = 100
   )
+
+##PCA PLOT Female
 
 # Filter out "Negr1"
 data_processed_F_out <- data_processed_F[rownames(data_processed_F) != "Negr1", ]
